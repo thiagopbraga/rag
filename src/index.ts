@@ -10,7 +10,18 @@ import { initQdrantCollection } from "./services/qdrant.js";
 const app = express();
 const port = config.server.port;
 
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // Requests from the same origin (e.g., a browser opening index.html from the 'public' folder)
+    // will have an 'origin' header that matches the server's address.
+    // We can also allow requests that don't have an origin (like server-to-server or curl).
+    if (!origin || origin.startsWith(`http://localhost:${port}`) || origin.startsWith(`http://127.0.0.1:${port}`)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json());
 
 app.use(express.static("public"));
