@@ -30,6 +30,8 @@ document.getElementById("uploadButton").addEventListener("click", async () => {
 document
   .getElementById("questionButton")
   .addEventListener("click", async () => {
+    document.getElementById("answer").innerText = "";
+    document.getElementById("sources").innerHTML = "";
     const questionInput = document.getElementById("questionInput");
     const question = questionInput.value;
     if (!question) {
@@ -47,10 +49,12 @@ document
       });
 
       const data = await response.json();
-      console.log("Received answer:", data);
       document.getElementById("answer").innerText = data.answer;
       document.getElementById("sources").innerHTML = data.sources
-        .map((s, idx) => `<li style='list-style:none'>[${idx+1}]: página${s.page}</li>`)
+        .map(
+          (s, idx) =>
+            `<li style='list-style:none'>[${idx + 1}]: página${s.page}</li>`
+        )
         .join("");
     } catch (error) {
       console.error("Error sending query:", error);
