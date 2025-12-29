@@ -20,10 +20,10 @@ export async function initQdrantCollection() {
 			},
 		});
 
-		console.log(`✔︎ Collection '${config.qdrant.collectionName}' created.`);
+		console.log(`Collection '${config.qdrant.collectionName}' created.`);
 	} else {
 		console.log(
-			`✔︎ Collection '${config.qdrant.collectionName}' already exists.`,
+			`Collection '${config.qdrant.collectionName}' already exists.`,
 		);
 	}
 }
