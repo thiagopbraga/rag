@@ -32,6 +32,6 @@ export async function searchDocuments({
   return {
     question,
     answers: results,
-    countChunks: results.length,    
+    countChunks: results.length,
   };
 }

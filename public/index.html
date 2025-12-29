@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>RAG Interface</h1>
+        <div class="section">
+            <h2>Upload Document</h2>
+            <input type="file" id="fileInput">
+            <button id="uploadButton">Upload</button>
+        </div>
+        <div class="section">
+            <h2>Question:</h2>
+            <input type="text" id="questionInput" placeholder="Enter your question">
+            <button id="questionButton">Send</button>
+        </div>
+        <div class="section">
+            <h2>Answer</h2>
+            <div id="answer" class="response-box"></div>
+        </div>
+        <div class="section">
+            <h2>Sources</h2>
+            <ul id="sources" class="sources-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

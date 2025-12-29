@@ -4,12 +4,16 @@ import { config } from "./config.js";
 import express from "express";
 import { queryRouter } from "./routes/queryRouter.js";
 import { documentRouter } from "./routes/documentRouter.js";
+import cors from "cors";
 import { initQdrantCollection } from "./services/qdrant.js";
 
 const app = express();
 const port = config.server.port;
 
+app.use(cors());
 app.use(express.json());
+
+app.use(express.static("public"));
 
 app.get("/", (_, res) => {
   res.json({ message: "RAG TLC API is running" });
