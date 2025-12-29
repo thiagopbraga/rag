@@ -1,0 +1,31 @@
+{
+  "name": "rag-course-tlc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "keywords": [],
+  "author": "Thiago Braga",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/community": "^1.1.0",
+    "@langchain/core": "^1.1.6",
+    "@qdrant/js-client-rest": "^1.16.2",
+    "@types/node": "^25.0.3",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "pdf-parse": "^1.1.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/pdf-parse": "^1.1.5"
+  }
+}
