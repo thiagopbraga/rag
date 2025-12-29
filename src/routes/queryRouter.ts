@@ -10,8 +10,8 @@ export const queryRouter = Router();
 const querySchema = z.object({
   question: z
     .string()
-    .min(1, "A pergunta não pode estar vazia")
-    .max(1000, "A pergunta é muito longa. O limite é de 1000 caracteres."),
+    .min(1, "Question cannot be empty.")
+    .max(1000, "Question is too long. The limit is 1000 characters."),
   topK: z.number().min(1).max(10).optional().default(3),
 });
 
@@ -22,7 +22,7 @@ queryRouter.post("/", async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.error("Error processing query:", error);
-    res.status(500).json({ error: "Erro ao processar a consulta" });
+    res.status(500).json({ error: "Error processing query" });
   }
 });
 

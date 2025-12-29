@@ -21,14 +21,14 @@ export async function processDocument(
   const documents = await loader.load();
 
   if (documents.length === 0) {
-    throw new Error("Nenhum documento encontrado no arquivo PDF.");
+    throw new Error("No documents found in the PDF file.");
   }
 
   // 2. Divisão do PDF em chunks
   const chunks = await textsplitters.splitDocuments(documents);
 
   if (chunks.length === 0) {
-    throw new Error("Nenhum chunk foi gerado a partir do documento.");
+    throw new Error("No chunks were generated from the document   .");
   }
 
   // 3. Adicionar alguns metadados nos chunks
@@ -54,7 +54,7 @@ export async function processDocument(
     const vector = vectors[idx];
 
     if (!vector || !Array.isArray(vector)) {
-      throw new Error("Erro ao gerar o vetor para o chunk.");
+      throw new Error("Error generating vector for chunk.");
     }
 
     return {
@@ -77,6 +77,6 @@ export async function processDocument(
     sucess: true,
     documentId,
     chuncksCount: documentsChunksWithMetadata.length,
-    message: "Documento processado com sucesso",
+    message: "Document processed successfully",
   };
 }

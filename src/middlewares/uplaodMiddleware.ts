@@ -16,7 +16,7 @@ export const uploadMiddleware = multer({
   limits: { fileSize: config.uploads.maxFileSizeMB },
   fileFilter: (_, file, cb) => {
     if (file.mimetype !== "application/pdf") {
-      cb(new Error("Apenas arquivos PDF são permitidos"));
+      cb(new Error("Just PDF files are allowed"));
     }
     cb(null, true);
   },

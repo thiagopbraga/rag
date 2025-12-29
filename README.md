@@ -1,101 +1,100 @@
 # RAG (Retrieval-Augmented Generation)
 
-**RAG**, sigla para *Retrieval-Augmented Generation* (Geração Aumentada por Recuperação), é uma arquitetura de inteligência artificial que aprimora o desempenho de Modelos de Linguagem Grandes (LLMs) ao conectá-los a uma base de conhecimento externa.
+**RAG**, short for *Retrieval-Augmented Generation*, is an artificial intelligence architecture that enhances the performance of Large Language Models (LLMs) by connecting them to an external knowledge base.
 
-Em vez de depender apenas das informações com as quais foi treinado, um sistema RAG primeiro recupera dados relevantes de uma fonte externa (como documentos, bancos de dados ou APIs) em resposta a uma consulta do usuário. Em seguida, ele fornece esses dados recuperados como contexto para o LLM, que os utiliza para gerar uma resposta mais precisa, atualizada e contextualizada.
+Instead of relying solely on the information it was trained on, a RAG system first retrieves relevant data from an external source (such as documents, databases, or APIs) in response to a user query. It then provides this retrieved data as context to the LLM, which uses it to generate a more accurate, up-to-date, and contextualized response.
 
-### Para que pode ser útil?
+### What is it useful for?
 
-1.  **Reduzir Alucinações**: Ao basear as respostas em informações factuais e recuperadas, o RAG diminui significativamente a tendência dos LLMs de "inventar" fatos ou fornecer informações incorretas.
-2.  **Utilizar Dados Privados ou Atuais**: Permite que os LLMs respondam a perguntas sobre informações proprietárias, de domínio específico ou muito recentes, que não estavam presentes em seus dados de treinamento originais.
-3.  **Aumentar a Transparência e a Confiança**: Como o sistema recupera informações de fontes específicas, ele pode citar suas fontes, permitindo que os usuários verifiquem a procedência das respostas.
-4.  **Custo-Benefício**: Atualizar uma base de conhecimento externa é muito mais barato e rápido do que treinar ou fazer o ajuste fino (fine-tuning) de um LLM inteiro para incorporar novas informações.
-5.  **Aplicações Práticas**: É ideal para a criação de:
-  *   **Chatbots de Suporte ao Cliente**: Que respondem com base em manuais de produtos e políticas da empresa.
-  *   **Assistentes de Pesquisa Interna**: Que ajudam funcionários a encontrar informações em documentações e bases de conhecimento corporativas.
-  *   **Sistemas de Perguntas e Respostas**: Que fornecem respostas precisas sobre um corpo de texto complexo, como documentos legais ou artigos científicos.
+1. **Reducing Hallucinations**: By grounding responses in factual, retrieved information, RAG significantly reduces the tendency of LLMs to “make up” facts or provide incorrect information.
+2. **Using Private or Up-to-Date Data**: It allows LLMs to answer questions about proprietary, domain-specific, or very recent information that was not included in their original training data.
+3. **Increasing Transparency and Trust**: Since the system retrieves information from specific sources, it can cite its sources, allowing users to verify the origin of the answers.
+4. **Cost-Effective**: Updating an external knowledge base is much cheaper and faster than training or fine-tuning an entire LLM to incorporate new information.
+5. **Practical Applications**: It is ideal for building:
 
-### O que esta aplicação resolve?
+   * **Customer Support Chatbots**: That respond based on product manuals and company policies.
+   * **Internal Research Assistants**: That help employees find information in documentation and corporate knowledge bases.
+   * **Question-and-Answer Systems**: That provide accurate answers over complex text corpora, such as legal documents or scientific articles.
 
-Esta é uma API de exemplo que implementa um sistema RAG simples. Ela permite que você:
+### What does this application solve?
 
-1.  **Faça upload de documentos**: Envie arquivos (atualmente PDFs) para serem processados, divididos em pedaços (chunks), transformados em vetores (embeddings) e armazenados em um banco de dados vetorial (Qdrant).
-2.  **Faça perguntas sobre os documentos**: Envie uma consulta para a API, que irá buscar os trechos mais relevantes dos documentos armazenados e usá-los como contexto para que um LLM (como o GPT da OpenAI) gere uma resposta coesa e baseada nos seus dados.
+This is a sample API that implements a simple RAG system. It allows you to:
 
-### Como utilizar a aplicação
+1. **Upload documents**: Send files (currently PDFs) to be processed, split into chunks, transformed into vectors (embeddings), and stored in a vector database (Qdrant).
+2. **Ask questions about the documents**: Send a query to the API, which will search for the most relevant document excerpts and use them as context for an LLM (such as OpenAI’s GPT) to generate a coherent, data-grounded answer.
 
-Siga os passos abaixo para configurar e executar o projeto.
+### How to use the application
 
-#### Pré-requisitos
+Follow the steps below to set up and run the project.
 
-*   [Node.js](https://nodejs.org/) (versão 20 ou superior)
-*   [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
-*   Um editor de código, como o [VS Code](https://code.visualstudio.com/)
+#### Prerequisites
 
-#### 1. Clonar o repositório
+* [Node.js](https://nodejs.org/) (version 20 or higher)
+* [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
+* A code editor, such as [VS Code](https://code.visualstudio.com/)
+
+#### 1. Clone the repository
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone <REPOSITORY_URL>
 cd rag
 ```
 
-#### 2. Instalar as dependências
+#### 2. Install dependencies
 
-Instale as dependências do projeto Node.js:
+Install the Node.js project dependencies:
 
 ```bash
 npm install
 ```
 
-#### 3. Configurar as variáveis de ambiente
+#### 3. Configure environment variables
 
-Crie um arquivo chamado `.env` na raiz do projeto, copiando o conteúdo de `.env.example` (se houver) ou usando o modelo abaixo:
+Create a file named `.env` at the root of the project, copying the contents of `.env.example` (if available) or using the template below:
 
 ```env
-# Configurações do Servidor
+# Server Settings
 SERVER_PORT=3333
 
-# Configurações do Qdrant (banco de dados vetorial)
+# Qdrant Settings (vector database)
 QDRANT_HOST=http://localhost
 QDRANT_PORT=6333
-QDRANT_COLLECTION_NAME=documentos
+QDRANT_COLLECTION_NAME=documents
 
-# Configurações da OpenAI
-OPENAI_API_KEY=SUA_CHAVE_DE_API_AQUI
+# OpenAI Settings
+OPENAI_API_KEY=YOUR_API_KEY_HERE
 OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 OPENAI_CHAT_MODEL=gpt-3.5-turbo
 
-# Configurações de Upload
+# Upload Settings
 UPLOADS_DIR=./uploads
 ```
 
-**Importante**: Substitua `SUA_CHAVE_DE_API_AQUI` pela sua chave de API da OpenAI.
+**Important**: Replace `YOUR_API_KEY_HERE` with your OpenAI API key.
 
-#### 4. Iniciar os serviços
+#### 4. Start the services
 
-Para executar a aplicação, você precisa iniciar o banco de dados vetorial Qdrant e o servidor da API.
+To run the application, you need to start the Qdrant vector database and the API server.
 
-Primeiro, inicie o Qdrant com o Docker Compose:
+First, start Qdrant using Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-Em seguida, inicie o servidor da API em modo de desenvolvimento:
+Then, start the API server in development mode:
 
 ```bash
 npm run dev
 ```
 
-O servidor estará disponível em `http://localhost:3333` (ou na porta que você definiu no arquivo `.env`).
+The server will be available at `http://localhost:3333` (or on the port you defined in the `.env` file).
 
-#### 5. Endpoints da API
+#### 5. API Endpoints
 
-A API possui dois endpoints principais:
+The API has two main endpoints:
 
-*   **`POST /document`**: Para fazer upload de um arquivo PDF.
-*   **`POST /query`**: Para fazer uma pergunta e obter uma resposta baseada nos documentos.
+* **`POST /document`**: Upload a PDF file.
+* **`POST /query`**: Ask a question and receive an answer based on the uploaded documents.
 
-Você pode usar ferramentas como o [Insomnia](https://insomnia.rest/), [Postman](https://www.postman.com/) ou `curl` para interagir com a API.
-
-
+You can use tools such as [Insomnia](https://insomnia.rest/), [Postman](https://www.postman.com/), or `curl` to interact with the API.

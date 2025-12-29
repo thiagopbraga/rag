@@ -12,7 +12,7 @@ documentRouter.post(
     try {
       const file = req.file;
       if (!file) {
-        return res.status(400).json({ error: "Nenhum arquivo enviado" });
+        return res.status(400).json({ error: "No file uploaded" });
       }
 
       const result = await processDocument(file.path, file.originalname);
@@ -23,7 +23,7 @@ documentRouter.post(
       console.log("Error processing document upload:", error);
       res
         .status(500)
-        .json({ error: "Erro ao processar o upload do documento" });
+        .json({ error: "Error processing document upload" });
     }
   }
 );

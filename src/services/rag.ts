@@ -80,7 +80,7 @@ export async function generateRAGStreamingResponse({
   if (searchResults.answers.length === 0) {
     res.write(
       `data: ${JSON.stringify({
-        answer: "Desculpe, não encontrei informações para sua pergunta.",
+        answer: "Sorry, I couldn't find any information for your question.",
       })}\n\n`
     );
     res.write("data: [DONE]\n\n");
