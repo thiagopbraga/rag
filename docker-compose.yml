@@ -1,6 +1,6 @@
 services:
   qdrant:
-    container_name: rag-tlc-qdrant
+    container_name: rag-qdrant
     image: qdrant/qdrant
     platform: linux/amd64 # Apple Silicon compatibility
     ports:

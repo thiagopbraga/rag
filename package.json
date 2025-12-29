@@ -1,5 +1,5 @@
 {
-  "name": "rag-course-tlc",
+  "name": "rag",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -21,7 +21,8 @@
     "pdf-parse": "^1.1.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
